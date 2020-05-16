@@ -1,0 +1,16 @@
+.search-bar{
+  width: 70%;
+  margin-top: 0;
+  position: relative;
+}
+
+h1{
+  font-family: 'Josefin Sans';
+  font-weight: 400;
+  font-size: 4rem;
+  margin-top: 8%;
+}
+
+.home-body{
+  margin-left: 28%
+}

@@ -1,0 +1,34 @@
+.product-body{
+  margin-top: 6%;
+  margin-left: 28%;
+  width: 70%;
+}
+
+.product-card{
+  border-radius: 60px;
+  height: 10%;
+  z-index: -1;
+}
+
+.product-name{
+  font-family: 'Josefin Sans';
+  font-weight: 100;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.product-price{
+  font-family: 'Josefin Sans';
+  font-weight: 400;
+  text-align: right;
+  font-size: 1.4rem;
+}
+
+.product-desc{
+  margin: auto;
+}
+
+.product-image{
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+}

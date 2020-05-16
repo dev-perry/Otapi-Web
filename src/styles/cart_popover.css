@@ -1,0 +1,25 @@
+.cart{
+  position: absolute;
+  right: 5%;
+  top: 2%;
+  text-align: center;
+}
+
+.cart-icon{
+  padding: 0;
+  margin: 0;
+  width: 95%;
+}
+
+.cart-button{
+  padding: 0;
+  margin: 0;
+  width: 75%;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.cart-button:hover{
+  background-color: transparent;
+  border-color: transparent;
+}
