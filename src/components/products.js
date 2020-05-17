@@ -1,66 +1,41 @@
-import React from 'react';
-import {
-  CardColumns,
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-  CardSubtitle
-} from 'reactstrap';
+import React, {useState, useEffect} from 'react';
+import {CardColumns} from 'reactstrap';
+import {database} from '../firebase.js';
+import ProductCard from './product_card.js';
+import LoadAnimation from './load_animation.js';
+
 import '../styles/products.css';
-import filler from '../assets/product_image_default.svg';
 
 function Products(props) {
-  var category = props.category;
-  var price = 9.99;
-  return (
-  <div className="product-body">
-    <CardColumns>
-      <Card className="product-card">
-        <CardImg className="product-image" src={filler} top width="100%" alt="Product image"/>
-        <CardBody className="product-desc">
-          <CardTitle className="product-name">{category} product</CardTitle>
-          <CardSubtitle className="product-price">${price}</CardSubtitle>
-        </CardBody>
-      </Card>
-      <Card className="product-card">
-        <CardImg className="product-image" src={filler} top width="100%" alt="Product image"/>
-        <CardBody className="product-desc">
-          <CardTitle className="product-name">{category} product</CardTitle>
-          <CardSubtitle className="product-price">${price}</CardSubtitle>
-        </CardBody>
-      </Card>
-      <Card className="product-card">
-        <CardImg className="product-image" src={filler} top width="100%" alt="Product image"/>
-        <CardBody className="product-desc">
-          <CardTitle className="product-name">{category} product</CardTitle>
-          <CardSubtitle className="product-price">${price}</CardSubtitle>
-        </CardBody>
-      </Card>
-      <Card className="product-card">
-        <CardImg className="product-image" src={filler} top width="100%" alt="Product image"/>
-        <CardBody className="product-desc">
-          <CardTitle className="product-name">{category} product</CardTitle>
-          <CardSubtitle className="product-price">${price}</CardSubtitle>
-        </CardBody>
-      </Card>
-      <Card className="product-card">
-        <CardImg className="product-image" src={filler} top width="100%" alt="Product image"/>
-        <CardBody className="product-desc">
-          <CardTitle className="product-name">{category} product</CardTitle>
-          <CardSubtitle className="product-price">${price}</CardSubtitle>
-        </CardBody>
-      </Card>
-      <Card className="product-card">
-        <CardImg className="product-image" src={filler} top width="100%" alt="Product image"/>
-        <CardBody className="product-desc">
-          <CardTitle className="product-name">{category} product</CardTitle>
-          <CardSubtitle className="product-price">${price}</CardSubtitle>
-        </CardBody>
-      </Card>
-    </CardColumns>
-  </div>
-);
+  const category = props.category;
+  const [products, setProducts] = useState([]);
+
+  useEffect(()=>{
+    database.collection(category).where("stocked","==",true).get().then(
+      (querySnapshot)=>{
+      querySnapshot.forEach((doc)=>{
+        setProducts([...products,{id: doc.id, data: doc.data()}]);
+      });
+    })
+    .catch(function(error){
+      console.log("Error getting documents:", error);
+    })
+  },[]
+  );
+
+  if(products.length === 0){
+    return <LoadAnimation/>;
+  }else{
+    return(
+      <div className="product-body">
+        <CardColumns>
+          {products.map(item=>(
+            <ProductCard key={item} id={item.id} data={item.data}/>
+          ))}
+        </CardColumns>
+      </div>
+    );
+  }
 }
 
 export default Products;
