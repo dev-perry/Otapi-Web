@@ -5,9 +5,9 @@ import React from 'react';
 import {
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
+  NavItem
 } from 'reactstrap';
+import {NavLink} from 'react-router-dom';
 
 function Navigation(props) {
   return (
@@ -16,16 +16,16 @@ function Navigation(props) {
           <NavbarBrand href="/"><img className="brand-logo" alt="logo" src={logo}/></NavbarBrand>
           <div className="category-block">
             <NavItem className="category-link" >
-                  <NavLink href="/apparel"><p>apparel</p></NavLink>
+                  <NavLink to="/apparel"><p>apparel</p></NavLink>
             </NavItem>
             <NavItem className="category-link">
-                  <NavLink href="/accessories"><p>accessories</p></NavLink>
+                  <NavLink to="/accessories"><p>accessories</p></NavLink>
             </NavItem>
             <NavItem className="category-link">
-                  <NavLink href="/prints"><p>prints</p></NavLink>
+                  <NavLink to="/prints"><p>prints</p></NavLink>
             </NavItem>
             <NavItem className="category-link">
-                  <NavLink href="/living"><p>living</p></NavLink>
+                  <NavLink to="/living"><p>living</p></NavLink>
             </NavItem>
           </div>
         </Nav>
