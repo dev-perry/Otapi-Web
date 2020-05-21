@@ -10,7 +10,6 @@ function ProductCard(props){
   const details = props.data;
 
   function navigate(e){
-    console.log('Le click');
     setRedirect(true);
   }
 
@@ -30,7 +29,7 @@ function ProductCard(props){
         </CardBody>
         {redirect && <Redirect to={{
           pathname: '/product/' + props.id,
-          state: {data: props.data}
+          state: {data: props.data, id: props.id}
         }}/>}
       </Card>
     </div>
