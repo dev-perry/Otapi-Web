@@ -1,34 +1,48 @@
-import React, {useState, useEffect} from 'react';
-import { Media } from 'reactstrap';
+import React, {useState} from 'react';
+import {Container, Row, Col, Button} from 'reactstrap';
+import {storage} from '../firebase.js';
+import filler from '../assets/F7F7F7-0.8.png';
+import '../styles/product_view.css';
 
  function ProductView(props){
-   const [data, setData] = useState({});
+   const [data, setData] = useState(props.location.state.data);
+   const [id, setID] = useState(props.location.state.id);
+   const [src, setSrc] = useState(filler);
+   const descList = data.desc.split("*");
 
-   useEffect(()=>{
-     setData(props.location.state.data)
-   }, [])
+   storage.child('thumbnails/'+id+'.png').getDownloadURL().then(
+       function(url){
+         setSrc(url);
+       }
+     );
 
-   return(
-     <div className="view-body">
-       <Media>
-         <Media left>
-           <Media object data-src="https://via.placeholder.com/150" />
-         </Media>
-         <Media body>
-           <Media heading>
-             Unisex Heavy Blend Hoodie
-           </Media>
-           <div className="product-price">${data.price}</div>
-           <div className="product-desc">
-             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-             tempor incididunt ut labore et dolore magna aliqua. Suspendisse potenti nullam ac tortor vitae purus
-             faucibus ornare suspendisse.
-             Magna etiam tempor orci eu lobortis elementum.
-           </div>
-         </Media>
-       </Media>
-     </div>
-   )
- }
+  return(
+    <div className="prodview-body">
+      <Container>
+        <Row>
+          <Col xs="6">
+              <img alt="Product" src={src}/>
+          </Col>
+          <Col xs="6">
+            <div className="prodview-overview">
+              <div className="prodview-name">{data.name}</div>
+              <div className="prodview-price">${data.price}</div>
+              <div className="prodview-desc">
+                <ul className="prodview-desc-list">
+                  {
+                    descList.map((item)=> <li key={item}>{item}</li>)
+                  }
+                </ul>
+              </div>
+              <div className="prodview-btn-container">
+                <Button size="lg" className="prodview-button">CUSTOMIZE</Button>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  )
+}
 
  export default ProductView;
