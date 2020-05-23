@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import {Container, Row, Col, Button} from 'reactstrap';
 import {storage} from '../firebase.js';
+import DesignModule from './design_module.js';
 import filler from '../assets/F7F7F7-0.8.png';
 import '../styles/product_view.css';
 
  function ProductView(props){
    const [data, setData] = useState(props.location.state.data);
-   const [id, setID] = useState(props.location.state.id);
+   const [modal, setModal] = useState(false);
+   const id = props.match.params.id;
    const [src, setSrc] = useState(filler);
    const descList = data.desc.split("*");
 
@@ -16,7 +18,13 @@ import '../styles/product_view.css';
        }
      );
 
+  function toggle(){
+    setModal(!modal)
+  }
+
   return(
+    <>
+    <DesignModule modal={modal}  toggle={toggle}/>
     <div className="prodview-body">
       <Container>
         <Row>
@@ -35,13 +43,14 @@ import '../styles/product_view.css';
                 </ul>
               </div>
               <div className="prodview-btn-container">
-                <Button size="lg" className="prodview-button">CUSTOMIZE</Button>
+                <Button size="lg" className="prodview-button" onClick={toggle}>CUSTOMIZE</Button>
               </div>
             </div>
           </Col>
         </Row>
       </Container>
     </div>
+    </>
   )
 }
 
