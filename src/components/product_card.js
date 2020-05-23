@@ -28,8 +28,8 @@ function ProductCard(props){
           <CardSubtitle className="product-price">${details.price}</CardSubtitle>
         </CardBody>
         {redirect && <Redirect to={{
-          pathname: '/product/' + props.id,
-          state: {data: props.data, id: props.id}
+          pathname: '/'+props.category+'/' + props.id,
+          state: {data: props.data, category: props.category}
         }}/>}
       </Card>
     </div>
