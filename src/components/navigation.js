@@ -15,8 +15,8 @@ function Navigation(props) {
         <Nav vertical className="sidebar">
           <NavbarBrand href="/"><img className="brand-logo" alt="logo" src={logo}/></NavbarBrand>
           <div className="category-block">
-            <NavItem className="category-link" >
-                  <NavLink to="/apparel"><p>apparel</p></NavLink>
+            <NavItem className="category-link">
+              <NavLink to="/apparel"><p>apparel</p></NavLink>
             </NavItem>
             <NavItem className="category-link">
                   <NavLink to="/accessories"><p>accessories</p></NavLink>
