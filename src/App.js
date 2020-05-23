@@ -12,7 +12,7 @@ function App() {
     <CartPopover/>
     <Navigation>
       <Switch>
-        <Route path="/product/:id" render={(props) => <ProductView {...props}/>}/>
+        <Route path="/:category/:id" render={(props) => <ProductView {...props}/>}/>
         <Route path="/living"><Products category="living"/></Route>
         <Route path="/prints"><Products category="prints"/></Route>
         <Route path="/accessories"><Products category="accessories"/></Route>
