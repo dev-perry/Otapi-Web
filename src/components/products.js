@@ -30,7 +30,7 @@ function Products(props) {
       <div className="product-body">
         <CardColumns>
           {products.map(item=>(
-            <ProductCard key={item} id={item.id} data={item.data}/>
+            <ProductCard category={category} key={item} id={item.id} data={item.data}/>
           ))}
         </CardColumns>
       </div>
