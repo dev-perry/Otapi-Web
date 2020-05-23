@@ -15,7 +15,6 @@
   font-family: 'Josefin Sans';
   font-weight: 400;
   color: white;
-  margin-left: 2%;
 }
 
 .brand-logo{
@@ -26,4 +25,5 @@
 
 .category-block{
   margin-top: 15%;
+  padding-left: 8%;
 }
