@@ -21,7 +21,6 @@ const reducer = (state = initialState, action) => {
   if(action.type === 'LOAD_PRODUCTS'){
     return {...state, products: state.products.concat(action.payload)}
   }
-  console.log(state);
   return state
 }
 
